@@ -43,11 +43,13 @@ typedef struct DLL
 // Returns NULL if we could not allocate memory.
 dll_t *create_dll()
 {
-    // Modify the body of this function as needed.
-    dll_t *myDLL = NULL;
-
-    // TODO: Implement me!!
-
+    dll_t *myDLL = (dll_t *)malloc(sizeof(dll_t));
+    if (myDLL == NULL) {
+        return NULL; 
+    }
+    myDLL->count = 0;
+    myDLL->head = NULL;
+    myDLL->tail = NULL;
     return myDLL;
 }
 
