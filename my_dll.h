@@ -44,8 +44,9 @@ typedef struct DLL
 dll_t *create_dll()
 {
     dll_t *myDLL = (dll_t *)malloc(sizeof(dll_t));
-    if (myDLL == NULL) {
-        return NULL; 
+    if (myDLL == NULL)
+    {
+        return NULL;
     }
     myDLL->count = 0;
     myDLL->head = NULL;
@@ -60,13 +61,17 @@ dll_t *create_dll()
 // Returns 0 if false (the DLL has at least one element enqueued)
 int dll_empty(dll_t *l)
 {
-     if (l == NULL) {
-        return -1; 
+    if (l == NULL)
+    {
+        return -1;
     }
-    if (l->head == NULL) {
-        return 1; 
-    } else {
-        return 0; 
+    if (l->head == NULL)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
     }
 }
 
@@ -77,9 +82,25 @@ int dll_empty(dll_t *l)
 // (i.e. the memory allocation for a new node failed).
 int dll_push_front(dll_t *l, int item)
 {
-    // TODO: Implement me!!
-
-    return -1;
+    if (l == NULL)
+    {
+        return -1; 
+    }
+    node_t *nNode = (node_t *)malloc(sizeof(node_t));
+    if (nNode == NULL)
+    {
+        return 0;
+    }
+    nNode->data = item;
+    nNode->next = l->head;
+    nNode->previous = NULL;
+    if (l->head != NULL)
+    {
+        l->head->previous = nNode;
+    }
+    l->head = nNode;
+    l->count++;
+    return 1;
 }
 
 // push a new item to the end of the DLL (after the last node in the list).
