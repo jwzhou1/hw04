@@ -165,7 +165,7 @@ int unitTest8(int status)
 }
 
 // Another test for 'dll_empty' fucntion.
-// Here we create an non-empty DDL with one element to test 'dll_empty' fucntion.
+// Here we create a non-empty DDL with one element to test 'dll_empty' fucntion.
 int unitTest9(int status)
 {
     int passed = 0;
@@ -186,6 +186,135 @@ int unitTest9(int status)
     return passed;
 }
 
+// One test for 'dll_push_front' fucntion.
+// Here we create an empty DDL to test 'dll_push_front' fucntion.
+int unitTest10(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    int item = 5;
+    int test = dll_push_front(dll, item);
+    if (test == 1 && dll->count == 1 && dll->head != NULL && dll->head->data == item &&
+        dll->head->previous == NULL && dll->head->next == NULL && dll->tail == dll->head)
+    {
+        passed = 1;
+    }
+    free(dll->head);
+    free(dll);
+    return passed;
+}
+
+// Another test for 'dll_push_front' fucntion.
+// Here we create a non-empty DDL to test 'dll_push_front' fucntion.
+int unitTest11(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    node_t *testNode = (node_t *)malloc(sizeof(node_t));
+    testNode->data = 5;
+    testNode->next = NULL;
+    testNode->previous = NULL;
+    dll->head = testNode;
+    dll->tail = testNode;
+    dll->count = 1;
+    int item = 10;
+    int test = dll_push_front(dll, item);
+    if (test == 1 && dll->count == 2 && dll->head != NULL && dll->head->data == item &&
+        dll->head->previous == NULL && dll->head->next == testNode && testNode->previous == dll->head)
+    {
+        passed = 1;
+    }
+    free(dll->head);
+    free(testNode);
+    free(dll);
+    return passed;
+}
+
+// One test for 'dll_push_back' fucntion.
+// Here we create an empty DDL to test 'dll_push_back' fucntion.
+int unitTest12(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    int item = 5;
+    int test = dll_push_back(dll, item);
+    if (test == 1 && dll->count == 1 && dll->tail != NULL && dll->tail->data == item &&
+        dll->tail->previous == NULL && dll->tail->next == NULL && dll->head == dll->tail)
+    {
+        passed = 1;
+    }
+    free(dll->tail);
+    free(dll);
+    return passed;
+}
+
+// Another test for 'dll_push_back' fucntion.
+// Here we create a non-empty DDL to test 'dll_push_back' fucntion.
+int unitTest13(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    node_t *testNode = (node_t *)malloc(sizeof(node_t));
+    testNode->data = 5;
+    testNode->next = NULL;
+    testNode->previous = NULL;
+    dll->head = testNode;
+    dll->tail = testNode;
+    dll->count = 1;
+    int item = 10;
+    int test = dll_push_back(dll, item);
+    if (test == 1 && dll->count == 2 && dll->tail != NULL && dll->tail->data == item &&
+        dll->tail->previous == testNode && dll->tail->next == NULL && testNode->next == dll->tail)
+    {
+        passed = 1;
+    }
+    free(dll->tail);
+    free(testNode);
+    free(dll);
+    return passed;
+}
+
+// One test for 'dll_pop_front' fucntion.
+// Here we create a DDL with one element to test 'dll_pop_front' fucntion.
+int unitTest14(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    dll_push_front(dll, 5);
+    int test = dll_pop_front(dll);
+    if (test == 5 && dll->count == 0 && dll->head == NULL && dll->tail == NULL)
+    {
+        passed = 1;
+    }
+    free(dll);
+    return passed;
+}
+
+// Another test for 'dll_pop_front' fucntion.
+// Here we create a DDL with five elements to test 'dll_pop_front' fucntion.
+int unitTest15(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    dll_push_front(dll, 5);
+    dll_push_front(dll, 10);
+    dll_push_front(dll, 15);
+    dll_push_front(dll, 20);
+    dll_push_front(dll, 25);
+    int test = dll_pop_front(dll);
+    if (test == 25 && dll->count == 4 && dll->head->data == 20 && dll->head->next->data == 15 &&
+        dll->head->next->next->data == 10 && dll->head->next->next->next->data == 5 &&
+        dll->tail->data == 5 && dll->tail->next == NULL && dll->tail->previous->data == 10 &&
+        dll->tail->previous->previous->data == 15 && dll->tail->previous->previous->previous->data == 20)
+    {
+        passed = 1;
+    }
+    free(dll->tail);
+    free(dll->head);
+    free(dll);
+    return passed;
+}
+
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 // UNCOMMENT Tests as you are ready to use them
@@ -199,7 +328,13 @@ int (*unitTests[])(int) = {
     unitTest6,
     unitTest7,
     unitTest8,
-    unitTest9};
+    unitTest9,
+    unitTest10,
+    unitTest11,
+    unitTest12,
+    unitTest13,
+    unitTest14,
+    unitTest15};
 
 // ====================================================
 // ================== Program Entry ===================
