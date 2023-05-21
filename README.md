@@ -2,19 +2,25 @@
 
 Name: Jiawei Zhou
 
-Github Account name: 
+Github Account name: jwzhou1
 
-Link to Assignment on Github: (copy and paste the link to your assignment repo here)
+Link to Assignment on Github: (copy and paste the link to your assignment repo here)  
+https://github.com/jwzhou1/hw04.git
 
 How many hours did it take you to complete this assignment (estimate)? 
 
 Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what capacity.  
-- one per row, add more if needed
-
+- one per row, add more if needed  
+No.
 
 Did you use any external resources (you do not have to cite in class material)? (Cite them below)  
-- one row per resource
-
+- one row per resource  
+    For writing my_dll.h file, I used the following external resources:  
+    https://www.tutorialspoint.com/data_structures_algorithms/doubly_linked_list_program_in_c.htm  
+    https://prepinsta.com/data-structures/doubly-linked-list-in-c/  
+    https://www.geeksforgeeks.org/introduction-and-insertion-in-a-doubly-linked-list/  
+    https://www.scaler.com/topics/doubly-linked-list-in-c/  
+    https://www.simplilearn.com/tutorials/c-tutorial/doubly-linked-list-in-c#:~:text=Doubly%20Linked%20Lists%20in%20C,both%20forward%20and%20backward%20directions.  
 
 (Optional) What was your favorite part of the assignment? 
 
