@@ -10,7 +10,6 @@
 #include <stdlib.h> // for malloc/free
 #include "my_dll.h"
 
-
 // A sample collection of tests for your program
 // We will be adding our own to test your program.
 
@@ -111,16 +110,96 @@ int unitTest5(int status)
     return passed;
 }
 
+// One test for 'create_dll' fucntion.
+// Here we create one doubly linked list to test 'create_dll' fucntion.
+int unitTest6(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    if (dll != NULL && dll->count == 0 && dll->head == NULL && dll->tail == NULL)
+    {
+        passed = 1;
+    }
+    free(dll);
+    return passed;
+}
+
+// Another test for 'create_dll' fucntion.
+// Here we create five doubly linked lists to test 'create_dll' fucntion.
+int unitTest7(int status)
+{
+    int passed = 0;
+    dll_t *dll1 = create_dll();
+    dll_t *dll2 = create_dll();
+    dll_t *dll3 = create_dll();
+    dll_t *dll4 = create_dll();
+    dll_t *dll5 = create_dll();
+    if (dll1 != NULL && dll1->count == 0 && dll1->head == NULL && dll1->tail == NULL &&
+        dll2 != NULL && dll2->count == 0 && dll2->head == NULL && dll2->tail == NULL &&
+        dll3 != NULL && dll3->count == 0 && dll3->head == NULL && dll3->tail == NULL &&
+        dll4 != NULL && dll4->count == 0 && dll4->head == NULL && dll4->tail == NULL &&
+        dll5 != NULL && dll5->count == 0 && dll5->head == NULL && dll5->tail == NULL)
+    {
+        passed = 1;
+    }
+    free(dll1);
+    free(dll2);
+    free(dll3);
+    free(dll4);
+    free(dll5);
+    return passed;
+}
+
+// One test for 'dll_empty' fucntion.
+// Here we create an empty DDL to test 'dll_empty' fucntion.
+int unitTest8(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    if (dll_empty(dll) == 1)
+    {
+        passed = 1;
+    }
+    free(dll);
+    return passed;
+}
+
+// Another test for 'dll_empty' fucntion.
+// Here we create an non-empty DDL with one element to test 'dll_empty' fucntion.
+int unitTest9(int status)
+{
+    int passed = 0;
+    dll_t *dll = create_dll();
+    node_t *node = (node_t *)malloc(sizeof(node_t));
+    node->data = 5;
+    node->next = NULL;
+    node->previous = NULL;
+    dll->head = node;
+    dll->tail = node;
+    dll->count = 1;
+    if (dll_empty(dll) == 0)
+    {
+        passed = 1;
+    }
+    free(dll->head);
+    free(dll);
+    return passed;
+}
+
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 // UNCOMMENT Tests as you are ready to use them
 // Add your own tests!
 int (*unitTests[])(int) = {
-   unitTest1,
-   unitTest2,
-   unitTest3,
-   unitTest4,
-   unitTest5};
+    unitTest1,
+    unitTest2,
+    unitTest3,
+    unitTest4,
+    unitTest5,
+    unitTest6,
+    unitTest7,
+    unitTest8,
+    unitTest9};
 
 // ====================================================
 // ================== Program Entry ===================
